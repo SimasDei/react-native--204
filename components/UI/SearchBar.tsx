@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons';
 type SearchScreen = {
   term: string;
   onTermChange: (newTerm: string) => void;
-  onEndEditing: () => void;
+  onEndEditing: (term: string) => void;
 };
 
 export const SearchBar = ({ term, onTermChange, onEndEditing }: SearchScreen) => {
@@ -17,7 +17,7 @@ export const SearchBar = ({ term, onTermChange, onEndEditing }: SearchScreen) =>
         autoCorrect={false}
         value={term}
         onChangeText={onTermChange}
-        onEndEditing={onEndEditing}
+        onEndEditing={() => onEndEditing(term)}
         style={styles.inputStyle}
         placeholder={'Search'}
       />
