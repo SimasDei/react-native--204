@@ -1,6 +1,12 @@
 export interface IResults {
   title?: string;
   results?: IResult[];
+  navigate?: (
+    routeName: string,
+    params: {
+      id: IResult['id'];
+    },
+  ) => void;
 }
 
 export interface IResult {
@@ -9,6 +15,7 @@ export interface IResult {
   image_url: string;
   rating: number;
   review_count: number;
+  photos?: string[];
 }
 
 export interface IParsedResults {

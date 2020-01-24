@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 import { IResults, IResult } from '../../types';
 
@@ -9,7 +10,7 @@ type Item = {
   item: IResult;
 };
 
-export const ResultList = ({ title, results }: IResults) => {
+export const ResultList = ({ title, results, navigate }: IResults) => {
   return (
     <View style={styles.containerStyles}>
       <Text style={styles.titleStyle}>{title}</Text>
@@ -18,7 +19,11 @@ export const ResultList = ({ title, results }: IResults) => {
         showsHorizontalScrollIndicator={false}
         data={results}
         keyExtractor={(result: IResult) => result.id}
-        renderItem={({ item }: Item) => <ResultDetails result={item} />}
+        renderItem={({ item }: Item) => (
+          <TouchableOpacity onPress={() => navigate('Result', { id: item.id })}>
+            <ResultDetails result={item} />
+          </TouchableOpacity>
+        )}
       />
     </View>
   );
@@ -36,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ResultList;
+export default withNavigation(ResultList);

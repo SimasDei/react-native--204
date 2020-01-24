@@ -1,11 +1,14 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import { SearchScreen } from '../screens';
+import { SearchScreen, ResultsShowScreen } from '../screens';
 
 const screens = {
   Search: {
     screen: SearchScreen,
+  },
+  Result: {
+    screen: ResultsShowScreen,
   },
 };
 

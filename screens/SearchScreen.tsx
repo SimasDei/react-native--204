@@ -4,17 +4,17 @@ import React, { useState } from 'react';
 import { StyleSheet, ScrollView, Text } from 'react-native';
 
 import { useSearch } from '../hooks';
-import { IParsedResults } from '../types';
+import { IParsedResults, IResult } from '../types';
 
 import { SearchBar } from '../components/UI';
 import { ResultList } from '../components/results';
 
-export const SearchScreen = () => {
+export const SearchScreen = ({ navigation: { navigate } }) => {
   const [term, setTerm] = useState('');
   const [searchApi, results, errorMessage] = useSearch();
 
   const filterResultsByPrice = (price: string) => {
-    return results.filter((result: object) => result.price === price);
+    return results.filter((result: IResult) => result.price === price);
   };
 
   const parsedResults = () => {
@@ -44,7 +44,7 @@ export const SearchScreen = () => {
 
     return gerParsedResults.map(({ price, title, results }) => {
       if (results.length) {
-        return <ResultList title={title} results={results} key={price} />;
+        return <ResultList title={title} results={results} key={price} navigate={navigate} />;
       }
     });
   };
