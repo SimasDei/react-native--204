@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, FlatList } from 'react-native';
 
 import { IResults, IResult } from '../../types';
 
-import { ResultDetails } from './';
+import { ResultDetails } from './ResultDetails';
 
 type Item = {
   item: IResult;
@@ -15,6 +15,7 @@ export const ResultList = ({ title, results }: IResults) => {
       <Text style={styles.titleStyle}>{title}</Text>
       <FlatList
         horizontal
+        showsHorizontalScrollIndicator={false}
         data={results}
         keyExtractor={(result: IResult) => result.id}
         renderItem={({ item }: Item) => <ResultDetails result={item} />}

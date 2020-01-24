@@ -10,3 +10,9 @@ export interface IResult {
   rating: number;
   review_count: number;
 }
+
+export interface IParsedResults {
+  title: string;
+  price: string;
+  results?: IResult[];
+}
